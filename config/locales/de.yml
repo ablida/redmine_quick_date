@@ -1,0 +1,11 @@
+de:
+  quick_date:
+    today: Heute
+    tomorrow: Morgen
+    in_2_days: Übermorgen
+    next_week: Nächste Woche
+    in_7_days: In 7 Tagen
+    in_14_days: In 14 Tagen
+    in_30_days: In 30 Tagen
+    none: kein
+    icon_title: Ende / Wiedervorlage setzen

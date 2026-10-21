@@ -1,0 +1,22 @@
+<%
+  quick_date_labels = {
+    today: l('quick_date.today'),
+    tomorrow: l('quick_date.tomorrow'),
+    in2days: l('quick_date.in_2_days'),
+    nextWeek: l('quick_date.next_week'),
+    in7days: l('quick_date.in_7_days'),
+    in14days: l('quick_date.in_14_days'),
+    in30days: l('quick_date.in_30_days'),
+    none: l('quick_date.none'),
+    iconTitle: l('quick_date.icon_title')
+  }
+  start_of_week = Setting.start_of_week
+  start_of_week = t(:general_first_day_of_week, default: '1') if start_of_week.blank?
+%>
+<script>
+  const quickDateLabels = <%= raw quick_date_labels.to_json %>;
+  const quickDateIcon = '<%= sprite_icon "time-add" %>';
+  const startOfWeek = '<%= start_of_week %>';
+</script>
+<%= stylesheet_link_tag 'quick_date', plugin: 'redmine_quick_date' %>
+<%= javascript_include_tag 'quick_date', plugin: 'redmine_quick_date' %>
