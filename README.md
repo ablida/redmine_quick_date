@@ -59,11 +59,6 @@ No database migrations, permissions or settings are required. More information o
 All options are set in `assets/javascripts/quick_date.js`:
 
 - **Menu options:** edit the `optionList()` function.
-- **Holidays for "Next week":** *Next week* skips Mondays that are holidays. Holidays are configured in two lists:
-  - `fixedHolidays`: specific dates, e.g. `'2026-12-25'`
-  - `recurringHolidays`: dates that repeat every year, e.g. `'12-25'`. Preset are the German public holidays with a fixed date (1 Jan, 1 May, 3 Oct, 1 Nov, 24–26 Dec, 31 Dec).
-
-  Holidays can also be provided from elsewhere, e.g. a company calendar, by setting `window.quickDateHolidays = [...]` and/or `window.quickDateRecurringHolidays = [...]` in a script that runs before `quick_date.js`. Both lists are merged with the ones in the file.
 - **Translations:** add locale files under `config/locales/` with the same keys as `en.yml`.
 
 ## Uninstallation
