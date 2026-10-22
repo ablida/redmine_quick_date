@@ -4,12 +4,46 @@
   var iconId = 'quick-date-icon';
   var menuId = 'quick-date-menu';
 
+  // Skip these holidays
+  var fixedHolidays = [
+    // '2026-12-25'
+    // '2026-01-01'
+  ];
+  var recurringHolidays = [
+    '05-01',
+    '10-03',
+    '11-01',
+    '12-24',
+    '12-25',
+    '12-26',
+    '12-31',
+    '01-01'
+  ];
+
   var fields = [
     { fieldId: 'issue_due_date', iconId: 'quick-due-date-icon', menuId: 'quick-due-date-menu' },
     { fieldId: 'issue_start_date', iconId: 'quick-start-date-icon', menuId: 'quick-start-date-menu' }
   ];
 
   var startOfWeek = startOfWeek ?? 1;
+
+  function holidaySet() {
+    var fixed = fixedHolidays.concat(window.quickDateHolidays || []);
+    return fixed;
+  }
+
+  function recurringHolidaySet() {
+    return recurringHolidays.concat(window.quickDateRecurringHolidays || []);
+  }
+
+  function isHoliday(d) {
+    var iso = formatDate(d);
+    if (holidaySet().indexOf(iso) !== -1) {
+      return true;
+    }
+    var monthDay = iso.slice(5);
+    return recurringHolidaySet().indexOf(monthDay) !== -1;
+  }
 
   function labels() {
     return quickDateLabels || {
@@ -42,7 +76,9 @@
     d.setHours(0, 0, 0, 0);
 
     if (special === 'next_week') {
-      d.setDate(d.getDate() + 7 - (d.getDay() - startOfWeek + 7) % 7);
+      do {
+        d.setDate(d.getDate() + 1);
+      } while (d.getDay() !== 1 || isHoliday(d)); // 1 = Monday
     } else {
       d.setDate(d.getDate() + (parseInt(days, 10) || 0));
     }

@@ -11,7 +11,7 @@
     iconTitle: l('quick_date.icon_title')
   }
   start_of_week = Setting.start_of_week
-  start_of_week = t(:general_first_day_of_week, default: '1') if start_of_week.blank?
+  start_of_week = l(:general_first_day_of_week, default: '1') if start_of_week.blank?
 %>
 <script>
   const quickDateLabels = <%= raw quick_date_labels.to_json %>;
